@@ -13,29 +13,29 @@ var WIZARD_SONAME = ['да Марья', 'Верон', 'Мирабелла', 'В�
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var getRandomFullName = function(arrName, arrSoname) {
-	var names = Math.floor(Math.random() * arrName.length); 
-	var sonames = Math.floor(Math.random() * arrSoname.length);
-	return arrName[names] + " " + arrSoname[sonames];
+var getRandomFullName = function(names, sonames) {
+	var name = Math.floor(Math.random() * names.length); 
+	var soname = Math.floor(Math.random() * sonames.length);
+	return names[name] + " " + sonames[soname];
 };
 
-var getRandomCoatColor = function(arrColorCoat) {
-	var colorsCoat = Math.floor(Math.random() * arrColorCoat.length);
-	return arrColorCoat[colorsCoat];
+var getRandomCoatColor = function(colorsCoat) {
+	var coat = Math.floor(Math.random() * colorsCoat.length);
+	return colorsCoat[coat];
 };
 
-var getRandomEyesColor = function(arrColorEyes) {
-	var colorsEyes = Math.floor(Math.random() * arrColorEyes.length);
-	return arrColorEyes[colorsEyes];
+var getRandomEyesColor = function(colorsEyes) {
+	var eyes = Math.floor(Math.random() * colorsEyes.length);
+	return colorsEyes[eyes];
 };
 
-var getNewWizards = function(elementsArr, arrName, arrSoname, arrColorCoat, arrColorEyes) {
+var createRandomWizards = function(elementCount, names, sonames, colorsCoat, colorsEyes) {
 	var newArr = [];
-	for (var i = 0; i <= elementsArr - 1; i++) {
+	for (var i = 0; i < elementCount; i++) {
 		var wizard = {
-			name: getRandomFullName(arrName, arrSoname),
-			coatColor: getRandomCoatColor(arrColorCoat),
-			eyesColor: getRandomEyesColor(arrColorEyes),
+			name: getRandomFullName(names, sonames),
+			coatColor: getRandomCoatColor(colorsCoat),
+			eyesColor: getRandomEyesColor(colorsEyes),
 		}; 
 		newArr[i] = wizard;
 		
@@ -43,7 +43,7 @@ var getNewWizards = function(elementsArr, arrName, arrSoname, arrColorCoat, arrC
 		return newArr;
 };
 
-var wizards = getNewWizards(4, WIZARD_NAMES, WIZARD_SONAME, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR);
+var wizards = createRandomWizards(4, WIZARD_NAMES, WIZARD_SONAME, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR);
 
 var renderWizard = function (wizard) {
 	var wizardElement = similarWizardTemplate.cloneNode(true);
